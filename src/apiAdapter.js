@@ -1,4 +1,5 @@
 const BASE_URL = '/fv-api';
+const IMG_SIZE = 400;
 
 export async function getAll() {
     const r = await fetch(`${BASE_URL}/api/fruit/all`);
@@ -31,12 +32,67 @@ export async function getByOrder(order) {
 }
 
 export function mapFruit(f) {
+
+    const fruits = {
+        'Apple': '🍎',
+        'GreenApple': '🍏',  
+        'Banana': '🍌',
+        'Orange': '🍊',
+        'Strawberry': '🍓',
+        'Grape': '🍇',
+        'Pineapple': '🍍',
+        'Watermelon': '🍉',
+        'Peach': '🍑',
+        'Lemon': '🍋',
+        'Cherry': '🍒',
+        'Kiwi': '🥝',
+        'Kiwifruit': '🥝',   
+        'Mango': '🥭',
+        'Avocado': '🥑',
+        'Pear': '🍐',
+        'Blueberry': '🫐',
+        'Blackberry': '🫐',
+        'Raspberry': '🍓',
+        'Papaya': '🧡',
+        'Lime': '🍋',
+        'Plum': '🍇',
+        'Apricot': '🍑',
+        'Fig': '🍇',
+        'Pomegranate': '❤️',
+        'Cranberry': '🔴',
+        'Tangerine': '🍊',
+        'Persimmon': '🧡',
+        'Japanese Persimmon': '🧡',  
+        'Guava': '🍑',
+        'Passionfruit': '💜',  
+        'Durian': '🟤',
+        'Jackfruit': '🟡',
+        'Dragonfruit': '🩷',
+        'Pitahaya': '🩷',      
+        'Lychee': '🩷',
+        'Lingonberry': '🔴',
+        'Gooseberry': '🟢',
+        'Ceylon Gooseberry': '🟢',  
+        'Feijoa': '🟢',
+        'Morus': '🟣',         
+        'Tomato': '🍅',        
+        'Melon': '🍈',         
+        'Horned Melon': '🍈',  
+        'Pomelo': '🍊',        
+        'Mangosteen': '🟣',    
+        'Pumpkin': '🎃',       
+        'Hazelnut': '🌰',      
+        'Annona': '💚'
+    };
+    
+    const emoji = fruits[f.name] || '🍎';
+    
     return {
         id: f.id,
         name: f.name,
         family: f.family,
         genus: f.genus,
         order: f.order,
-        image: `https://source.unsplash.com/featured/?${encodeURIComponent(f.name)}%20fruit`,
+        image: fruits[f.name] || '🍎'
     };
 }
