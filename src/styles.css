@@ -29,6 +29,45 @@ body {
   font-size: 20px;
 }
 
+.fav-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: all 0.2s;
+}
+
+.fav-btn:hover {
+  background: white;
+  transform: scale(1.1);
+}
+
+.fav-counter {
+  font-weight: bold;
+  color: #2e7d32;
+}
+
+.fav-btn.on {
+  color: #ffd700;
+  background: rgba(255, 215, 0, 0.1);
+  border-color: #ffd700;
+}
+
+.fav-btn:focus-visible {
+  outline: 2px solid #2e7d32;
+  outline-offset: 2px;
+}
+
 main {
   padding: 8px 0;
 }
@@ -81,13 +120,15 @@ main {
 
 .card {
   border: 1px solid #ddd;
-  background: #fff;
   border-radius: 8px;
-  overflow: hidden;
   cursor: pointer;
-  transition: background .15s ease;
+  transition: all 0.15s;
+  background: white;
+  position: relative;
 }
-.card:hover { background: #f8f8f8; }
+.card:hover { 
+  background: #f8f8f8; 
+}
 
 .emoji-image {
   width: 100%;
@@ -98,6 +139,7 @@ main {
   font-size: 120px;
   background: #f8f9fa;
   border-radius: 8px 8px 0 0;
+  position: relative;
 }
 
 .body { padding: 8px 10px; }

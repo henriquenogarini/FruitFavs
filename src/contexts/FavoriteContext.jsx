@@ -38,4 +38,5 @@ export function FavoriteProvider({ children }) {
     return <FavoriteContext.Provider value={value}>{children}</FavoriteContext.Provider>;
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useFavorites = () => useContext(FavoriteContext);
