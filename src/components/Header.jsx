@@ -5,9 +5,10 @@ export default function Header({ onOpenFavorites = () => {} }) {
   return (
     <header className="header">
       <h1>FruitFavs</h1>
-       <button className="btn" onClick={onOpenFavorites} aria-haspopup="dialog">
+      <button className="btn" onClick={onOpenFavorites} aria-haspopup="dialog">
         ★ {favorites.length}
-         </button>
+      </button>
     </header>
   );
 }
+ 
