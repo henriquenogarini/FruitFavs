@@ -10,8 +10,8 @@ export default function SearchBar({ onSearch }) {
         },
         onSubmit: async (values, helpers) => {
             try {
+                helpers.setStatus(null);
                 await onSearch(values);
-                helpers.setStatus({ apiError: "" });
             } catch (error) {
                 helpers.setStatus({ apiError: error.message || "An error occurred" });
             } finally {
@@ -20,10 +20,23 @@ export default function SearchBar({ onSearch }) {
         },
     });
 
+    const handleInputChange = (e) => {
+        formik.handleChange(e);
+        if (formik.status?.apiError) formik.setStatus(null);
+    };
+
     return (
         <form className="toolbar" onSubmit={formik.handleSubmit} noValidate>
             <label className="sr-only" htmlFor="mode">Mode</label>
-            <select id="mode" name="mode" value={formik.values.mode} onChange={formik.handleChange}>
+            <select 
+                id="mode" 
+                name="mode" 
+                value={formik.values.mode} 
+                onChange={(e) => {
+                    formik.handleChange(e);
+                    if (formik.status?.apiError) formik.setStatus(null);
+                }}
+            >
                 <option value="name">Name</option>
                 <option value="family">Family</option>
                 <option value="genus">Genus</option>
@@ -36,7 +49,7 @@ export default function SearchBar({ onSearch }) {
                 name="query"
                 placeholder="Banana, Apple, etc."
                 value={formik.values.query}
-                onChange={formik.handleChange}
+                onChange={handleInputChange}
                 onBlur={formik.handleBlur}
                 aria-invalid={Boolean(formik.touched.query && formik.errors.query)}
             />
@@ -45,12 +58,10 @@ export default function SearchBar({ onSearch }) {
                 Search
             </button>
 
-            {}
             {formik.touched.query && formik.errors.query && (
                 <small className="error">{formik.errors.query}</small>
             )}
 
-            {}
             {formik.status?.apiError && (
                 <small className="error">{formik.status.apiError}</small>
             )}
