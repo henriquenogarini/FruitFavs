@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 
-export default function SearchBar({ onSearch }) {
+export default function SearchBar({ onSearch, loading = false }) {
     const formik = useFormik({
         initialValues: { mode: "name", query: "" },
         validate: (values) => {
@@ -54,8 +54,8 @@ export default function SearchBar({ onSearch }) {
                 aria-invalid={Boolean(formik.touched.query && formik.errors.query)}
             />
 
-            <button className="btn btn-primary" type="submit" disabled={formik.isSubmitting}>
-                Search
+            <button className="btn btn-primary" type="submit" disabled={formik.isSubmitting || loading} aria-busy={formik.isSubmitting || loading}>
+                {(formik.isSubmitting || loading) ? (<span className="spinner"></span>) : "Search"}
             </button>
 
             {formik.touched.query && formik.errors.query && (

@@ -82,7 +82,7 @@ export default function App() {
     <div className="app-box">
       <Header onOpenFavorites={() => setOpenFav(true)} />
       <main>
-        <SearchBar onSearch={handleSearch} error={err} />
+        <SearchBar onSearch={handleSearch} error={err} loading={loading} />
         {loading && <div><span className="spinner" aria-label="Loading"></span> Loading…</div>}
         {!loading && !err && items.length === 0 && ( <p className="empty">No fruits to show.</p>)}
         {!loading && !err && items.length > 0 && (
