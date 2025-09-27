@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import Header from './components/Header';
 import SearchBar from './components/SearchBar';
 import FruitGrid from './components/FruitGrid';
+import FavoritesModal from './components/FavoriteModal';
+import DetailModal from './components/DetailModal';
 import {
   getAll,
   getByName,
@@ -17,6 +19,8 @@ export default function App() {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState("");
+  const [openFav, setOpenFav] = useState(false);
+  const [selectedName, setSelectedName] = useState(null);
 
    useEffect(() => {
     let alive = true;
@@ -68,6 +72,7 @@ export default function App() {
     } catch (e) {
       setItems([]);
       setErr(e.message || "Error on searching fruits");
+      throw e;
     } finally {
       setLoading(false);
     }
@@ -75,7 +80,7 @@ export default function App() {
 
   return (
     <div className="app-box">
-      <Header />
+      <Header onOpenFavorites={() => setOpenFav(true)} />
       <main>
         <SearchBar onSearch={handleSearch} />
         {loading && <p>Loading...</p>}
@@ -83,12 +88,23 @@ export default function App() {
         {!loading && !err && (
           <FruitGrid
            items = {items} 
-           onOpen={(name) => {
-            console.log("Open fruit:", name);
-           }}
+           onOpen={(name) => setSelectedName(name)}
           />
         )}
       </main>
+      <FavoritesModal
+        open={openFav}
+        onClose={() => setOpenFav(false)}
+        onOpenDetail={(name) => {
+          setSelectedName(name);
+          setOpenFav(false);
+        }}
+      />
+      <DetailModal
+        open={!!selectedName}
+        name={selectedName}
+        onClose={() => setSelectedName(null)}
+      />
     </div>
   );
 }
