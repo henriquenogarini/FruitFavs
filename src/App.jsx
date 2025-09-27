@@ -23,6 +23,26 @@ export default function App() {
   const [selectedName, setSelectedName] = useState(null);
   const [summary, setSummary] = useState("Showing all fruits");
 
+  const loadAllFruits = async () => {
+    let alive = true;
+    try {
+      setLoading(true);
+      setErr("");
+      const list = await getAll();
+      if (!alive) return;
+      setItems(list.map(mapFruit));
+      setSummary(`Showing all fruits (${list.length})`);
+    } catch (e) {
+      if (!alive) return;
+      setErr(e.message || "Error on loading fruits");
+      setSummary("");
+      setItems([]);
+    } finally {
+      if (alive) setLoading(false);
+    }
+    return () => { alive = false; };
+  };
+
    useEffect(() => {
     let alive = true;
     (async () => {
@@ -86,7 +106,7 @@ export default function App() {
 
   return (
     <div className="app-box">
-      <Header onOpenFavorites={() => setOpenFav(true)} />
+      <Header onOpenFavorites={() => setOpenFav(true)} onLogoClick={loadAllFruits} />
       <main>
         <SearchBar onSearch={handleSearch} error={err} loading={loading} />
         {!loading && !err && (<div className="result-info">{summary}</div>)}
