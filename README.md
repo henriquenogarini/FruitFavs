@@ -20,10 +20,15 @@ FruitFavs é uma aplicação web desenvolvida em React que permite aos usuários
 ## 👨‍🏫 Informações Acadêmicas
 
 **Universidade:** Universidade Tecnológica Federal do Paraná - Campus Cornélio Procópio (UTFPR-CP)
+
 **Disciplina:** ES47B - Programação Web Full Stack  
+
 **Professor:** Prof. Dr. Willian Massami Watanabe
+
 **Aluno:** Henrique Cesar Nogarini de Carvalho
+
 **RA:** 2102374
+
 **Semestre:** 2025/2
 
 ---
@@ -126,6 +131,7 @@ const fruits = {
 ```
 
 **Justificativa:** Esta abordagem garante consistência visual, carregamento instantâneo e funciona offline, sendo mais eficiente que buscar imagens externas.
+
 **OBS:** Algumas frutas não possuem emoji, fazendo com que alguns ícones fossem reutilizados para mostrar as cores das frutas, porém o nome e dados delas estão corretos.
 
 
