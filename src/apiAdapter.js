@@ -85,8 +85,6 @@ export function mapFruit(f) {
         'Annona': '💚'
     };
     
-    const emoji = fruits[f.name] || '🍎';
-    
     return {
         id: f.id,
         name: f.name,

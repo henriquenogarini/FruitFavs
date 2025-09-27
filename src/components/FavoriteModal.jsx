@@ -19,7 +19,7 @@ export default function FavoritesModal({ open, onClose, onOpenDetail }) {
           <strong>Favorites ({favorites.length})</strong>
           <div style={{ display: "flex", gap: 8 }}>
             {favorites.length > 0 && (
-              <button className="btn btn-danger" onClick={clearFavorites}>
+              <button className="btn btn-danger" onClick={() => { if (confirm("Clear all favorites?")) clearFavorites(); }}>
                 Clear all
               </button>
             )}

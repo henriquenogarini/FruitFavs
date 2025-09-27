@@ -267,6 +267,7 @@ main {
   grid-template-columns: 200px 1fr; 
   gap: 16px;
 }
+
 .detail-hero {
   display: grid;
   place-items: center;
@@ -276,6 +277,7 @@ main {
   border: 1px solid #eee;
   border-radius: 8px;
 }
+
 .detail-info h4 {
   margin: 12px 0 8px;
 }
@@ -286,6 +288,7 @@ main {
   gap: 8px;
   margin-bottom: 8px;
 }
+
 .tag {
   background: #f1f3f5;
   border: 1px solid #e5e7eb;
@@ -298,10 +301,12 @@ main {
   width: 100%;
   border-collapse: collapse;
 }
+
 .nutri-table td {
   border-bottom: 1px solid #eee;
   padding: 6px 8px;
 }
+
 .nutri-table td:first-child {
   color: #666;
   width: 55%;

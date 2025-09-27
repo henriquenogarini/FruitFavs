@@ -21,6 +21,7 @@ export default function App() {
   const [err, setErr] = useState("");
   const [openFav, setOpenFav] = useState(false);
   const [selectedName, setSelectedName] = useState(null);
+  const [summary, setSummary] = useState("Showing all fruits");
 
    useEffect(() => {
     let alive = true;
@@ -31,9 +32,11 @@ export default function App() {
         if (!alive) return;
         setItems(list.map(mapFruit));
         setErr("");
+        setSummary(`Showing all fruits (${list.length})`);
       } catch (e) {
         if (!alive) return;
         setErr(e.message || "Error on loading fruits");
+        setSummary("");
       } finally {
         if (alive) setLoading(false);
       }
@@ -68,10 +71,13 @@ export default function App() {
           results = await getAll();
       }
       const normalized = Array.isArray(results) ? results : [results];
-      setItems(normalized.map(mapFruit));
+      const arr = normalized.map(mapFruit);
+      setItems(arr);
+      setSummary(`Found ${arr.length} results for "${q}" in ${mode}`);
     } catch (e) {
       setItems([]);
       setErr(e.message || "Error on searching fruits");
+      setSummary(`Results: 0 in ${mode}: "${q}"`);
       throw e;
     } finally {
       setLoading(false);
@@ -83,6 +89,7 @@ export default function App() {
       <Header onOpenFavorites={() => setOpenFav(true)} />
       <main>
         <SearchBar onSearch={handleSearch} error={err} loading={loading} />
+        {!loading && !err && (<div className="result-info">{summary}</div>)}
         {loading && <div><span className="spinner" aria-label="Loading"></span> Loading…</div>}
         {!loading && !err && items.length === 0 && ( <p className="empty">No fruits to show.</p>)}
         {!loading && !err && items.length > 0 && (
