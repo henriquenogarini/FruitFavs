@@ -1,5 +1,6 @@
 **Projeto 01 - Disciplina: Programação Web Full Stack**  
 **Foco: Desenvolvimento Front-end com biblioteca React.js e consumo de uma API aberta**
+
 **Website:** https://fruitfavs.netlify.app/
 ---
 
