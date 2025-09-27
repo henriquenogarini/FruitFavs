@@ -93,6 +93,7 @@ export function mapFruit(f) {
         family: f.family,
         genus: f.genus,
         order: f.order,
+        nutritions: f.nutritions,
         image: fruits[f.name] || '🍎'
     };
 }
